@@ -39,6 +39,8 @@ Local Open Scope Q_scope.
 ** Specific results for streams on [Q]
 *)
 
+Set Lax CoInductive Match.
+
 (** [everyOther] preserves limits. *)
 Lemma everyOther_nbz : forall (s : Stream Q) (e : QposInf),
     (NearBy 0 e s) -> NearBy 0 e (everyOther s).
@@ -67,6 +69,8 @@ Proof.
  apply X.
  constructor.
 Defined.
+
+Unset Lax CoInductive Match.
 
 (** [mult_Streams] preserves convergeing to 0. *)
 Lemma mult_Streams_nbz : forall {s1 s2 : Stream Q} {x : QposInf},
@@ -124,6 +128,8 @@ Definition StreamBounds (a b : Stream Q)
   := ForAll (fun (x:Stream (Q*Q)) => let (a,b):=(CoqStreams.hd x) in QAbsSmall a b)
             (zipWith pair a b).
 
+Set Lax CoInductive Match.
+
 (** If the bounding stream goes to 0, so does the bounded stream. *)
 Lemma Stream_Bound_nbz : forall a b e, (StreamBounds a b) -> NearBy 0 e a -> NearBy 0 e b.
 Proof.
@@ -151,6 +157,8 @@ Proof.
  destruct Ha as [_ Ha].
  assumption.
 Qed.
+
+Unset Lax CoInductive Match.
 
 Lemma Stream_Bound_zl : forall a b, (StreamBounds a b) -> Limit a 0 -> Limit b 0.
 Proof.
