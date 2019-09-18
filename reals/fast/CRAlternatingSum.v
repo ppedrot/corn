@@ -300,6 +300,8 @@ Qed.
 
 Local Open Scope Q_scope.
 
+Set Lax CoInductive Match.
+
 Lemma InfiniteAlternatingSum_step (seq : Stream Q) {dnn:DecreasingNonNegative seq}
       {zl: @Limit Q_as_MetricSpace seq 0} : 
  (InfiniteAlternatingSum seq == '(hd seq) - InfiniteAlternatingSum (tl seq))%CR.
@@ -359,6 +361,8 @@ Proof.
  rewrite -> Qminus'_correct.
  apply Qball_Reflexive. apply (Qpos_nonneg (e+e)).
 Qed.
+
+Unset Lax CoInductive Match.
 
 (** The infinite alternating series is always nonnegative. *)
 Lemma InfiniteAlternatingSum_nonneg (seq : Stream Q) {dnn:DecreasingNonNegative seq}
